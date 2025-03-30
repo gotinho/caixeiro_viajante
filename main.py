@@ -144,19 +144,18 @@ def ler_arquivo_tsp_gz(caminho_arquivo):
 
 def main():
     inicio_programa = time.time()
-    caminho_do_arquivo = "data/att48.tsp.gz"  # Substitua pelo caminho do seu arquivo
-    # caminho_do_arquivo = "data/ali535.tsp.gz"  # Substitua pelo caminho do seu arquivo
+    # caminho_do_arquivo = "data/att48.tsp.gz"  # Substitua pelo caminho do seu arquivo
+    caminho_do_arquivo = "data/ali535.tsp.gz"  # Substitua pelo caminho do seu arquivo
     # caminho_do_arquivo = "data/a280.tsp.gz"  # Substitua pelo caminho do seu arquivo
     dados = ler_arquivo_tsp_gz(caminho_do_arquivo)
 
     if dados:
-        print("Dimensão:", dados["dimensao"])
         dimensao = dados["dimensao"]
         distancias = calcula_distancias(dados["coordenadas"])
 
-        # n_formigas = dimensao
-        n_formigas = 10
-        n_interacoes = 100
+        n_formigas = dimensao
+        # n_formigas = 10
+        n_interacoes = 5
         peso_feromonio = 1
         peso_heuristica = 2
         taxa_evaporacao = 0.9
@@ -203,10 +202,17 @@ def main():
             elif rota_final.custo > melhor_rota.custo:
                 rota_final = melhor_rota
             fim_interacao = time.time()
-            print(f" Interacao {p:5} {melhor_rota.custo:15} {(fim_interacao - inicio_interacao):30} {matriz_feromonio[0][0]}")
+            print(f" Interacao {p:5} {melhor_rota.custo:15} {(fim_interacao - inicio_interacao):30}")
         fim_programa = time.time()
         print("Tempo Total Programa", (fim_programa - inicio_programa))
         print("Custo Final", rota_final.custo)
+        print("Dimensão:", dados["dimensao"])
+        print(f"{n_formigas=}")
+        print(f"{n_interacoes=}")
+        print(f"{peso_heuristica=}")
+        print(f"{peso_feromonio=}")
+        print(f"{taxa_evaporacao=}")
+        print(f"{feromonio_inicial=}")
         print("Fim")
 
 
