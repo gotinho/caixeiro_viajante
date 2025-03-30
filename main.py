@@ -34,11 +34,6 @@ def calcula_heuristica(distancia):
     else:
         return 1 / distancia
 
-
-def calcula_transicao(feromonio, heuristica, peso_feromonio, peso_heuristica):
-    return pow(feromonio, peso_feromonio) * pow(heuristica, peso_heuristica)
-
-
 class Formiga:
     def __init__(self):
         self.visitadas = []
